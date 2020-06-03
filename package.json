@@ -2,7 +2,7 @@
   "name": "v1",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "node app.js",
   "engines": {
     "node": "12.16.x",
     "npm": "6.x"
