@@ -1,0 +1,37 @@
+<%- include ("./partials/header") %>
+
+<div class="row">
+    <div class="form-signUp">
+        <div class="header text-center">
+            <h2>Login</h2>
+        </div>
+        <form class="container" action="/login" method="POST">
+                <div class="col">
+                    <div class="md-form">
+                        <i class="fas fa-user prefix"></i>
+                        <input type="text" id="username" name="username" class="form-control"
+                         required>
+                         <label for="username">User Name</label>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="md-form">
+                        <i class="fas fa-key prefix"></i>
+                        <input type="password" id="password" name="password" class="form-control" required>
+                        <label for="password">Password</label>
+                    </div>
+                    <button class="btn btn-lg btn-success btn-block mb-3" type="submit">Sign in</button>   
+                </div>    
+        </form>
+        <div class="container ml-3 mt-2">
+            <p>Do not have an account yet? <a href="/campgrounds">Sign Up here!</a>
+            <a href="/forgot" class="float-right forgot">Forgot Password</a>
+            </p>
+        </div>
+
+    </div>
+</div>
+
+
+
+<%- include ("./partials/footer") %>

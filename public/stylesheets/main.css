@@ -1,0 +1,129 @@
+.form-signUp {
+	background-color: white;
+	border-radius: 5px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+	overflow: hidden;
+	width: 600px;
+	max-width: 100%;
+	margin: 5px auto;
+}
+.header {
+	border-bottom: 1px solid #f0f0f0;
+	background-color: #f7f7f7;
+	padding: 20px 40px;
+}
+
+.header h2 {
+	margin: 0;
+}
+.form {
+	padding: 30px 40px;	
+}
+
+.md-form {
+	margin-bottom: 10px;
+	padding-bottom: 20px;
+	position: relative;
+}
+
+.md-form label{
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.form-group  input:focus {
+	outline: 0;
+	border-color: #777;
+}
+
+.md-form.success input {
+	border-color: #2ecc71;
+}
+
+.md-form.error input:foucs{
+	border-color: red;
+}
+
+.md-form .fa-check-circle,
+.md-form .fa-exclamation-circle{
+	visibility: hidden;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+}
+
+.md-form small{
+	color: #e74c3c;
+	position: absolute;
+	bottom: 0;
+	left: 40px;
+	visibility: hidden;
+}
+
+.form button {
+	border-radius: 4px;
+	color: #fff;
+	display: block;
+	font-family: inherit;
+	font-size: 16px;
+	padding: 10px;
+	margin-top: 20px;
+	width: 100%;
+}
+
+.forgot{
+	padding-right: 30px;
+}
+button{
+	margin-bottom: 5px;
+}
+#link a {
+    text-transform: uppercase;
+    text-decoration:none; 
+    cursor:pointer; 
+	font-size: small;
+	margin: 20px 50px;
+}
+.delete-form{
+    display: inline;
+}
+
+#basic-text1{
+	background-color: #2ecc71;
+}
+.rounded-circle{
+	border: 2px solid white;
+	width : 50px;
+	object-fit: scale-down;
+}
+#card{
+	height: 340px;
+	margin: 0 5px;
+}
+#logout{
+	padding-top: 10px;
+}
+/* Google Maps */
+#map {
+    height: 400px;
+    width: 100%;
+}
+
+.jumbotron{
+	background-color: whitesmoke;
+}
+
+.checked {
+    color: gold;
+}
+.unchecked{
+	color:gainsboro;
+}
+
+.home{
+	background: linear-gradient(135deg, #177437, #21a9af);
+}
+
+.fab:hover{
+	color:#b3b3b3;
+}

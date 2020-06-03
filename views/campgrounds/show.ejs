@@ -1,0 +1,245 @@
+<%- include ("../partials/header") %>
+
+<div class="row">
+  <div class="col-md-3">
+    <div id="map"></div>
+  </div>
+  <div class="col-md-9">
+    <div class="card mb-3">
+      <img class="card-img-top" src="<%= campground.image %>" alt="<%= campground.name %>" width="100%" height="100%">
+      <div class="card-body">
+        <p class="float-right">
+          $<%= campground.price %>/night
+        </p>
+        <h5 class="card-title"><%= campground.name %></h5>
+      <div style="padding-bottom: 10px;">
+          <form action="/campgrounds/<%= campground._id %>/like" method="POST">
+              <div class="btn-group">
+                  <% if (currentUser && campground.likes.some(function (like) {
+                      return like.equals(currentUser._id)
+                  })) { %>
+                  <button class="btn btn-sm btn-danger">
+                      <i class="fas fa-heart"></i> Liked (<%= campground.likes.length %>)
+                  </button>
+                  <% } else { %>
+                  <button class="btn btn-sm btn-secondary">
+                      <i class="fas fa-heart"></i> Like (<%= campground.likes.length %>)
+                  </button>
+                  <% } %>
+                  <button type="button" class="btn btn-sm btn-default" data-toggle="modal"
+                          data-target="#campgroundLikes">See more details
+                  </button>
+              </div>
+          </form>
+          <div class="float-right">
+            <button type="button" class="btn btn-sm btn-success" data-toggle="modal"
+                    data-target="#campgroundLikes">
+                <span>Total likes: <i class="fas fa-heart"></i> <%= campground.likes.length %></span>
+            </button>
+        </div>  
+      </div>
+
+        <p>
+            <em>submitted by : <a href="/users/<%= campground.author.id %>"><%= campground.author.username %></a>, <%= moment(campground.createdAt).fromNow() %></em>
+        </p>
+        <hr>
+        <p class="card-text"><%= campground.description %></p>
+        <% if(currentUser && (campground.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin)){ %>
+        <a class="btn btn-warning" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
+        <form action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST" class="delete-form">
+          <button class="btn btn-danger">Delete</button>
+        </form>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Reviews -->
+     <!--Review section-->
+<div class="card">
+  <div class="card-body">
+      <div class="card-header">
+      <% if (campground.rating === 0) { %>
+      <h5>
+          <em>No reviews yet.</em>
+      </h5>
+      <% } else { %>
+      <p>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star <% if (campground.rating > 1.5) { %> amber-text <% }else{ %> unchecked <% } %>"></span>
+          <span class="fa fa-star <% if (campground.rating > 2.5) { %> amber-text <% }else{ %> unchecked <% } %>"></span>
+          <span class="fa fa-star <% if (campground.rating > 3.5) { %> amber-text <% }else{ %> unchecked <% } %>"></span>
+          <span class="fa fa-star <% if (campground.rating > 4.5) { %> amber-text <% }else{ %> unchecked <% } %>"></span>
+          <em>(total reviews: <%= campground.reviews.length %>)</em>
+      <span class="float-right">
+        Current campground rating: <strong><%= campground.rating.toFixed(2) %></strong>
+      </span>
+      </p>
+    </div>
+    <h5 class="card-title mt-2">Latest reviews for this campground:</h5>
+      <hr style="margin-top: 0;">
+      <% campground.reviews.slice(0, 5).forEach(function(review){ %>
+      <div class="row">
+          <div class="col-md-3">
+              <!-- <div>Review by: <strong><%= review.author.username %></strong></div>
+              <span><em><%= review.updatedAt.toDateString() %></em></span> -->
+              <blockquote class="blockquote mb-0">
+                <%- '<span class="fa fa-star amber-text "></span>'.repeat(review.rating) %><%- '<span class="fa fa-star unchecked"></span>'.repeat(5 - review.rating) %>
+                <footer class="blockquote-footer"><small>Review by:</small> <strong><%= review.author.username %></strong><br> <cite title="Source Title text-muted"><%= review.updatedAt.toDateString() %></cite></footer>
+              </blockquote>
+          </div>
+          <div class="col-md-8 card-header">
+              <p style="text-align: justify; word-wrap: break-word;">
+                  <%= review.text %>
+              </p>
+              <% if(currentUser && currentUser.isAdmin || currentUser && review.author.id.equals(currentUser._id)){ %>
+          </div>
+          <div class ="container row text-center ml-5">
+            <div class="col"><a class="btn btn-md btn-warning"
+              href="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>/edit">Edit</a></div>
+            <div class="col"><form id="delete-form" action="/campgrounds/<%=campground._id %>/reviews/<%=review._id %>?_method=DELETE" method="POST">
+              <input type="submit" class="btn btn-md btn-danger" value="Delete">
+            </form>
+            </div>
+              <% } %>
+          </div>
+      </div>
+      <% }); %>
+    <hr>
+    <div class="row">
+      <div class="col float-left">
+          <h5><a href="/campgrounds/<%= campground._id %>/reviews"><i class="fa fa-search" aria-hidden="true"></i> See all reviews</  a></h5>
+      </div>
+      <% } %>
+      <div class ="text-right mr-4">
+          <a class="btn btn-primary 
+          <% if ((currentUser) && campground.reviews.some(function (review) {
+            return review.author.id.equals(currentUser._id)
+          })) { %> disabled <% } %>" href="/campgrounds/<%= campground._id %>/reviews/new">
+              Write a New Review</a>
+      </div>
+  </div>
+</div>
+</div>
+               
+    <!-- Comments -->
+    <div class="card mt-3">
+      <div class="card-body">
+        <div class="card-header text-right">
+          <a class="btn btn-success" href="/campgrounds/<%= campground._id %>/comments/new">Add New Comment</a>
+        </div>
+        <hr>
+        <div class="row">
+        <% campground.comments.forEach(function(comment){ %>
+          <div class="col-md-12 mb-2">
+            <div class="card">
+              <div class="card-body">
+                <div class="float-left">
+                  <p class="card-title"><%= comment.author.username %></p>
+                  <p class="card-text"><%= comment.text %></p>
+                </div>
+                <div class="float-right">
+                  <p><%= moment(comment.createdAt).fromNow() %></p>
+                  
+                  <% if(currentUser && comment.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin){ %>
+                  <div class="float-right">
+                    <a href="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>/edit" class="btn btn-sm btn-warning">EDIT</a>
+                    <form class="delete-form" action="/campgrounds/<%=campground._id%>/comments/<%=comment._id%>?_method=DELETE" method="POST">
+                      <button class="btn btn-sm btn-danger">DELETE</button>
+                    </form>
+                  </div>
+                  <% } %>
+                </div>
+              </div>
+            </div>
+          </div>
+        <% }) %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div>
+    <a href="/campgrounds">View All Campgrounds</a>
+</div>
+
+
+<!-- <div id ="lat" class ="sr-only"><%= campground.lat %></div>
+<div id ="lng" class ="sr-only"><%= campground.lng %></div> -->
+
+<!-- Campground Likes Modal -->
+<div id="campgroundLikes" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+      <!-- Modal content-->
+      <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title w-100" id="myModalLabel">Campground likes: <%= campground.likes.length %></h4>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <table class="table table-striped">
+                  <thead>
+                  <tr>
+                      <th>Liked by:</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  <% campground.likes.forEach(function(like) { %>
+                      <tr>
+                          <td><span><img src="<%= like.avatar %>" onerror="this.src='https://res.cloudinary.com/mahadi/image/upload/v1584360471/img-13_smmbx7.png'" class="rounded-circle" alt="avatar" height="35"></span> <%= like.username %></td>
+                          
+                      </tr>
+                  <% }); %>
+                  <% if (campground.likes.length === 0) { %>
+                      <tr>
+                          <td><em>No likes yet.</em></td>
+                      </tr>
+                  <% } %>
+                  </tbody>
+              </table>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+      </div>
+  </div>
+</div>
+
+<script>
+    function initMap() {
+      var lat = <%= campground.lat %>;
+      var lng = <%= campground.lng %>;
+    //   var lat = Number(document.querySelector('#lat').innerHTML);
+    //   var lng = Number(document.querySelector('#lng').innerHTML);
+      
+    //   console.log(typeof lat);
+    //   console.log(typeof lng);
+    //   console.log(lat + ", -" +lng);
+     
+      var center = {lat: lat, lng: lng };
+      var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 8,
+          center: center,
+          scrollwheel: false
+      });
+      var contentString = `
+        <strong><%= campground.name %><br />
+        <%= campground.location %></strong>
+        <p><%= campground.description %></p>
+      `
+      var infowindow = new google.maps.InfoWindow({
+        content: contentString
+      });
+      var marker = new google.maps.Marker({
+          position: center,
+          map: map
+      });
+      marker.addListener('click', function() {
+        infowindow.open(map, marker);
+      });
+    }
+  </script>
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAD8pherrGg4rXfKLQVg5mnub32kD31fXc&callback=initMap"></script>
+<%- include ("../partials/footer") %>

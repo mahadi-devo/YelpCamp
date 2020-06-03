@@ -1,0 +1,108 @@
+<%- include ("../partials/header") %>
+
+    <!-- <% if(currentUser && currentUser.isAdmin){%>
+        <h1>You are an Admin</h1>
+    <% }%> -->
+        <div class="row">
+            <div class="col">
+                <div class="jumbotron text-center">
+
+                    <!-- Title -->
+                    <h4 class="card-title h4 pb-2"><i class="fas fa-campground"></i> <strong>Welcome To YelpCamp!</strong></h4>
+                    <p class="text-center">View our hand-picked campgrounds from all over the world</p>
+                    <hr>
+                    <div class="row">
+                        <div class="col">
+                            <form action="/campgrounds" method="GET" id="campground-search">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-text1"><i class="fas fa-search text-white"
+                                  aria-hidden="true"></i></span>  
+                                </div>
+                                <input type="text" name="search" placeholder="Campground search..." class="form-control shadow-none">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card image -->
+                    <div class="view overlay my-4">
+                      <img src="https://mdbootstrap.com/img/Photos/Slides/img%20(70).jpg" class="container-fluid" alt="">
+                    </div>
+                    <a type="button" class="btn btn-success mb-4" href="/campgrounds/new">Add Campground</a>
+
+                    <p class="card-text">Sed ut perspiciatis unde omnis iste natus sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
+                
+                    <!-- Linkedin -->
+                    <a class="fa-lg p-2 m-2 li-ic"><i class="fab fa-linkedin-in"></i></a>
+                    <!-- Twitter -->
+                    <a class="fa-lg p-2 m-2 tw-ic"><i class="fab fa-twitter"></i></a>
+                    <!-- Dribbble -->
+                    <a class="fa-lg p-2 m-2 fb-ic"><i class="fab fa-facebook-f"></i></a>
+      
+                </div>
+            </div>
+        </div>
+ 
+    <!-- <header class="jumbotran">
+
+    <div class="row text-center">
+        <div class="col">
+            <h1>Welcome To YelpCamp!</h1>
+            <p>View our hand-picked campgrounds from all over the world</p>
+            <p>  
+                <a class="btn btn-primary btn-large" href="/campgrounds/new">Add New Campground</a>
+             </p>
+        </div>
+    </div>
+    <div class="col">
+             <div class="form-group">
+                <form action="/campgrounds" method="GET" class="form" id="campground-search">
+                    <input type="text" name="search" placeholder="Campground search..." class="form-control shadow-none">
+                </form>
+            </div>
+    </div>
+    </header> -->
+   
+   <div class="row">
+    <% campGrounds.forEach(function(campground){ %>
+        <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+            <div id ="card" class="card">
+                <div class="view overlay">
+                    <img class="card-img-top" src="<%= campground.image %>" alt="<%= campground.image %>" height="170px" width="238px">
+                    <a href="/campgrounds/<%= campground._id %>">
+                      <div class="mask rgba-white-slight"></div>
+                    </a>
+                  </div>
+                <div class="card-body">
+                        <h6 class="card-title font-weight-bold"><a href="/campgrounds/<%= campground._id %>"><%= campground.name %></a></h6>
+                    <!-- Data
+                    <ul class="list-unstyled list-inline rating mb-0">
+                      <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"> </i></li>
+                      <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+                      <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+                      <li class="list-inline-item mr-0"><i class="fas fa-star amber-text"></i></li>
+                      <li class="list-inline-item"><i class="fas fa-star-half-alt amber-text"></i></li>
+                      <li class="list-inline-item"><p class="text-muted">4.5 (413)</p></li>
+                    </ul> -->
+                    <% if (campground.rating === 0) { %>
+                        <em>No reviews yet.</em>
+                        <% } else { %>
+                        <span class="fa fa-star amber-text"></span>
+                        <i class="fa fa-star <% if (campground.rating > 1.5) { %> amber-text <% }else{ %> unchecked <% } %>"></i>
+                        <i class="fa fa-star <% if (campground.rating > 2.5) { %> amber-text <% }else{ %> unchecked <% } %>"></i>
+                        <i class="fa fa-star <% if (campground.rating > 3.5) { %> amber-text <% }else{ %> unchecked <% } %>"></i>
+                        <i class="fa fa-star <% if (campground.rating > 4.5) { %> amber-text <% }else{ %> unchecked <% } %>"></i>
+                        <span class="text-info">&#x00A0;&#x00A0;<%= campground.rating %>  <em><span class="text-muted">(<%= campground.reviews.length %>)</span></em></span>
+                    <% } %>
+                    </ul>
+                </div>    
+                <div class="card-footer">
+                    <a href="/campgrounds/<%= campground._id %>" class="float-left text-danger">Read More</a>
+                    <span class="float-right text-danger"><i class="fas fa-heart "></i> <small class ="text-muted"><%= campground.likes.length %></small></span>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+   </div>
+<%- include ("../partials/footer") %>

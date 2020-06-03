@@ -1,0 +1,43 @@
+<%- include ("../partials/header") %>
+
+<div class="row">
+    <div class="form-signUp">
+        <div class="header">
+            <h2>Create a New Campground</h2>
+    </div>
+        <form class="form" action="/campgrounds" method="POST" enctype="multipart/form-data">
+            <div class="md-form">
+                <i class="fas fa-campground prefix"></i>
+                <input id ="campgroundName" class="form-control shadow-none" type="text" name="campground[name]" required>
+                <label for="campgroundName">Campground Name</label>
+            </div>
+            <div class="md-form">
+                <i class="fas fa-tag prefix"></i>
+                <input id="price" class="form-control shadow-none" type="number" name ="campground[price]" min = "0.01" step = "0.01" required>
+                <label for="price">price</label>
+            </div>
+            <div class="md-form">
+                <i class="fas fa-location-arrow prefix"></i>
+                <input class="form-control shadow-none" type="text" name="location" id="location" required>
+                <label for="location">Location</label>
+            </div>
+            <div class="md-form">
+                <i class="fas fa-image prefix"></i>
+                <input type="file" id="image" name="image" accept="image/*" required>
+                <label for="image" class="sr-only">Image</label>
+            </div>
+            <div class="md-form">
+                <i class="fas fa-pencil-alt prefix"></i>
+                <textarea id="description" name= "campground[description]" class="md-textarea form-control" rows="3" placeholder="Say someting about the campground..."></textarea>
+                <label for="description">description</label>
+                <!-- <input id="description" class="form-control shadow-none" type="text" name="campground[description]" placeholder="description"> -->
+            </div>
+            <div class="md-form">
+                <button class="btn btn-lg btn-primary btn-block">Submit!</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<%- include ("../partials/footer") %>
