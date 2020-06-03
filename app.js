@@ -3,7 +3,7 @@ require('dotenv').config();
 
 const express = require("express"),
       app = express(),
-      bodyParser = require("body-parser"); //in order to read HTTP POST data , we have to use "body-parser" node module. body-parser is a piece                                        of express middleware that reads a form's input and stores it as a javascript object accessible                                           through req.body
+      bodyParser = require("body-parser"); 
       mongoose = require('mongoose'),
       passport = require('passport'),
       flash    =  require('connect-flash'),
@@ -13,8 +13,6 @@ const express = require("express"),
       User = require('./models/user.js'),
       Comment = require("./models/comment.js"),
       seedDB = require("./seeds");
-
-
 
       // requiring routes
 const commentRoutes = require('./routes/comments'),
