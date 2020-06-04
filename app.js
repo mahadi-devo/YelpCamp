@@ -21,7 +21,7 @@ const commentRoutes = require('./routes/comments'),
       indexRoutes = require('./routes/index');
 
 
-mongoose.connect("mongodb://localhost/yelpcamp_v8",{
+mongoose.connect(DB_CONFIG,{
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
