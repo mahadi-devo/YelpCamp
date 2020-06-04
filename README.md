@@ -1,3 +1,3 @@
 # YelpCamp
 
-<b>YelPCamp</b>
+<b>YelpCamp</b>
