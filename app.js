@@ -1,5 +1,3 @@
-
-
 const express = require("express"),
       app = express(),
       bodyParser = require("body-parser"); 
@@ -20,7 +18,7 @@ const commentRoutes = require('./routes/comments'),
       indexRoutes = require('./routes/index');
 
 
-mongoose.connect(DB_CONFIG,{
+mongoose.connect(process.env.DB_CONFIG,{
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
