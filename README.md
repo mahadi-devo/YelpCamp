@@ -1,10 +1,11 @@
 # YelpCamp
 
-<h2>Live Demo : <a href= "https://yelpcamp-mahadi1.herokuapp.com/">YelpCamp</a>
+<h2>Live Demo : <a href= "https://yelpcamp-mahadi1.herokuapp.com/">YelpCamp</a></h2>
 
 <ul>
     <li>Login username: guest</li>
     <li>Login password: Guest123</li>
+</ul>
 
 <b>YelpCamp Functions</b>
 
@@ -43,10 +44,9 @@
             <li>Update comments / rating / review</li>
             <li>Delete comments / rating / review</li>
         </ul>
-        </li>
-        <li>Campground location with Google Maps</li>
-        <li>Pricing feature</li>
-        <li>Password reset </li>
-        <li>Display time since post was created with Moment JS </li>
-        <li>User profile</li>
+    <li>Campground location with Google Maps</li>
+    <li>Pricing feature</li>
+    <li>Password reset </li>
+    <li>Display time since post was created with Moment JS </li>
+    <li>User profile</li>
 </ul>
