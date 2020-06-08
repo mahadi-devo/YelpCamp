@@ -27,17 +27,16 @@
         <li>Campgrounds:
         <ul>
             <li>List all campgrounds in the database</li>
-            <li>Search campgrounds by campground Name
-            </li>
+            <li>Search campgrounds by campground Name</li>
             <li>Create new campgrounds</li>
             <li>Upload a photo for campgrounds (uploaded to the cloudinary)</li>
             <li>Update campgrounds</li>
             <li>Delete campgrounds</li>
-            <li>Calculate the average rating from the reviews for a campgrounds<li>
+            <li>Calculate the average rating from the reviews for a campgrounds</li>
             <li>calculate likes for a campground</li>
         </ul>
         </li>
-        <li>comments / rating / review:
+        <li>Comments / Rating / Review:
         <ul>
             <li>List all comments / rating / reviews on a campgrouns from database</li>
             <li>Create new comments / rating / review</li>
