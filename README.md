@@ -47,5 +47,12 @@
     <li>Pricing feature</li>
     <li>Password reset </li>
     <li>Display time since post was created with Moment JS </li>
-    <li>User profile</li>
 </ul>
+
+    <li>Deployment
+            <Ul>
+                <li><a href ="www.heroku.com">Heroku</a></li>
+    </li>
+
+
+<p>Coded from scratch based on a challenge project provided in  - <a href ="https://www.udemy.com/the-web-developer-bootcamp/">Colt Steele's Web Developer Bootcamp course</a>
