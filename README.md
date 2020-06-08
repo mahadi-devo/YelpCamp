@@ -1,5 +1,7 @@
 # YelpCamp
 
+<p>YelpCamp is a Node.js express based web application with RESTful routing principals</p>
+
 <h2>Live Demo : <a href= "https://yelpcamp-mahadi1.herokuapp.com/">YelpCamp</a></h2>
 
 <ul>
