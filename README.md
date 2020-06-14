@@ -45,6 +45,11 @@
             <li>Update comments / rating / review</li>
             <li>Delete comments / rating / review</li>
         </ul>
+        <li>Likes :
+        <ul>
+            <li>List All Likes</li>
+            <li>Like | Not Like functionality</li>
+        </ul>
     <li>Campground location with Google Maps</li>
     <li>Pricing feature</li>
     <li>Password reset </li>
