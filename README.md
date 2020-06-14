@@ -48,7 +48,7 @@
         <li>Likes :
         <ul>
             <li>List All Likes</li>
-            <li>Like | Not Like functionality</li>
+            <li>Like, Remove Like Functionality</li>
         </ul>
     <li>Campground location with Google Maps</li>
     <li>Pricing feature</li>
