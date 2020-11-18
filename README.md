@@ -63,4 +63,3 @@
     </li>
 </ul>
 
-<p>Coded from scratch based on a challenge project provided in  - <a href ="https://www.udemy.com/the-web-developer-bootcamp/">Colt Steele's Web Developer Bootcamp course</a>
