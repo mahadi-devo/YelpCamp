@@ -2,12 +2,19 @@
 
 <p>YelpCamp is a Node.js express based web application with RESTful routing principals</p>
 
-<h2>Live Demo : <a href= "https://yelpcamp-mahadi1.herokuapp.com/">YelpCamp</a></h2>
-
+<h2>Live Demo : <a href= "https://yelpcamp-mahadi-devo.herokuapp.com/campgrounds">YelpCamp</a></h2>
+```
 <ul>
-    <li>Login username: guest</li>
+    <li>Login username: Guest</li>
     <li>Login password: Guest123</li>
 </ul>
+```
+```
+<ul>
+    <li>Login username: Admin</li>
+    <li>Login password: Admin123</li>
+</ul>
+```
 
 <b>YelpCamp Functions</b>
 
@@ -66,4 +73,3 @@
         </ul>
     </li>
 </ul>
-
