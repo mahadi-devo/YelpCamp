@@ -1,5 +1,7 @@
 # YelpCamp
 
+<p>YelpCamp is a Node.js express based web application with RESTful routing principals</p>
+
 <h2>Live Demo : <a href= "https://yelpcamp-mahadi1.herokuapp.com/">YelpCamp</a></h2>
 
 <ul>
@@ -47,9 +49,21 @@
             <li>Update comments / rating / review</li>
             <li>Delete comments / rating / review</li>
         </ul>
+        <li>Likes :
+        <ul>
+            <li>List All Likes</li>
+            <li>Like, Remove Like Functionality</li>
+        </ul>
     <li>Campground location with Google Maps</li>
     <li>Pricing feature</li>
     <li>Password reset </li>
     <li>Display time since post was created with Moment JS </li>
-    <li>User profile</li>
 </ul>
+<ul>
+    <li>Deployment
+        <ul>
+        <li><a href ="www.heroku.com">Heroku</a></li>
+        </ul>
+    </li>
+</ul>
+
