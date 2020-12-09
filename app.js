@@ -15,8 +15,7 @@ const express = require('express'),
   (methodOverride = require('method-override')),
   (Campground = require('./models/campground')),
   (User = require('./models/user.js')),
-  (Comment = require('./models/comment.js')),
-  (seedDB = require('./seeds'));
+  (Comment = require('./models/comment.js'));
 
 // requiring routes
 const commentRoutes = require('./routes/comments'),
