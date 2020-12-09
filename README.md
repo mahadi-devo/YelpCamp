@@ -1,9 +1,13 @@
 # YelpCamp
 
 > YelpCamp is a Node.js express based web application with RESTful routing principals
-> <b>Node | Express | MongoDB | ejs</b>
+> <br> <b>Node | Express | MongoDB | ejs</b>
 
-## Demo [yelpcamp](https://yelpcamp-mahadi-devo.herokuapp.com/campgrounds)
+## Demo
+
+The App is live at [yelpcamp](https://yelpcamp-mahadi-devo.herokuapp.com/campgrounds)
+
+## Login Credentials
 
 <b> Guest Role </b>
 
@@ -18,11 +22,19 @@
     <li>Login password: Admin123</li>
 </ul>
 
-<b>YelpCamp Functions</b>
+## Install Dependencies
 
-<img src="https://res.cloudinary.com/mahadi/image/upload/v1607534758/screenshot-localhost_3000-2020.12.09-22_50_08_lssccv.png">
-<img src="https://res.cloudinary.com/mahadi/image/upload/v1607534756/screenshot-localhost_3000-2020.12.09-22_52_34_eb7nc3.png">
-<img src="https://res.cloudinary.com/mahadi/image/upload/v1607534751/screenshot-localhost_3000-2020.12.09-22_53_43_cvrwyn.png">
+```
+npm install
+```
+
+## Run App
+
+```
+node app.js
+```
+
+<b>YelpCamp Functions</b>
 
 <ul>
     <li>Authentication:
