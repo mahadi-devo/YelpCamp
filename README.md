@@ -12,14 +12,14 @@ The App is live at [yelpcamp](https://yelpcamp-mahadi-devo.herokuapp.com/campgro
 <b> Guest Role </b>
 
 <ul>
-    <li>Login username: Guest</li>
-    <li>Login password: Guest123</li>
+    <li>Login username: <b>Guest</b></li>
+    <li>Login password: <b>Guest123</b></li>
 </ul>
 <hr>
 <b> Admin Role </b>
 <ul>
-    <li>Login username: Admin</li>
-    <li>Login password: Admin123</li>
+    <li>Login username: <b>Admin</b></li>
+    <li>Login password: <b>Admin123</b></li>
 </ul>
 
 ## Install Dependencies
@@ -77,10 +77,15 @@ node app.js
             <li>Like, Remove Like Functionality</li>
         </ul>
         </li>
-        <li>Secirity :
+        <li>Security :
         <ul>
-            <li>List All Likes</li>
-            <li>Like, Remove Like Functionality</li>
+            <li>Encrypt passwords and reset tokens</li>
+            <li>Prevent NoSQL injections</li>
+            <li>Add headers for security (helmet)</li>
+            <li>Prevent cross site scripting - XSS</li>
+            <li>Add a rate limit for requests of 100 requests per 10 minutes</li>
+            <li>Protect against http param polution</li>
+            <li>Use cors</li>
         </ul>
         </li>
     <li>Campground location with Google Maps</li>
