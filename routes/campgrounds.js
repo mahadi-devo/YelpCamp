@@ -1,19 +1,19 @@
-const express = require("express"),
+const express = require('express'),
   router = express.Router(),
-  Campground = require("../models/campground");
-(middleware = require("../middleware")),
-  (NodeGeocoder = require("node-geocoder"));
+  Campground = require('../models/campground');
+(middleware = require('../middleware')),
+  (NodeGeocoder = require('node-geocoder'));
 
 const options = {
-  provider: "google",
-  httpAdapter: "https",
+  provider: 'google',
+  httpAdapter: 'https',
   apiKey: process.env.GEOCODER_API_KEY,
   formatter: null,
 };
 
 const geocoder = NodeGeocoder(options);
 
-const multer = require("multer");
+const multer = require('multer');
 const storage = multer.diskStorage({
   filename: function (req, file, callback) {
     callback(null, Date.now() + file.originalname);
@@ -22,23 +22,23 @@ const storage = multer.diskStorage({
 const imageFilter = function (req, file, cb) {
   // accept image files only
   if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/i)) {
-    return cb(new Error("Only image files are allowed!"), false);
+    return cb(new Error('Only image files are allowed!'), false);
   }
   cb(null, true);
 };
 const upload = multer({ storage: storage, fileFilter: imageFilter });
 
-const cloudinary = require("cloudinary");
+const cloudinary = require('cloudinary');
 cloudinary.config({
-  cloud_name: "mahadi",
+  cloud_name: 'mahadi',
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 // INDEX - show all campgrounds
-router.get("/", (req, res) => {
+router.get('/', (req, res) => {
   if (req.query.search) {
-    const regex = new RegExp(escapeRegex(req.query.search), "gi");
+    const regex = new RegExp(escapeRegex(req.query.search), 'gi');
     // Get all campgrounds from DB
     Campground.find({ name: regex }, function (err, allCampgrounds) {
       if (err) {
@@ -46,14 +46,14 @@ router.get("/", (req, res) => {
       } else {
         if (allCampgrounds.length === 0) {
           req.flash(
-            "error",
-            "No campgrounds match that query, please try again."
+            'error',
+            'No campgrounds match that query, please try again.'
           );
-          return res.redirect("/campgrounds");
+          return res.redirect('/campgrounds');
         }
-        res.render("campgrounds/index", {
+        res.render('campgrounds/index', {
           campGrounds: allCampgrounds,
-          page: "campgrounds",
+          page: 'campgrounds',
         });
       }
     });
@@ -62,9 +62,9 @@ router.get("/", (req, res) => {
       if (err || !allcampground) {
         console.log(err);
       } else {
-        res.render("campgrounds/index", {
+        res.render('campgrounds/index', {
           campGrounds: allcampground,
-          page: "campgrounds",
+          page: 'campgrounds',
         });
       }
     });
@@ -72,14 +72,14 @@ router.get("/", (req, res) => {
 });
 
 // CREATE - add new campground to DB
-router.post("/", middleware.isLoggedIn, upload.single("image"), function (
+router.post('/', middleware.isLoggedIn, upload.single('image'), function (
   req,
   res
 ) {
   cloudinary.v2.uploader.upload(req.file.path, function (err, result) {
     if (err) {
-      req.flash("error", err.message);
-      return res.redirect("back");
+      req.flash('error', err.message);
+      return res.redirect('back');
     }
     // add cloudinary url for the image to the campground object under image property
     req.body.campground.image = result.secure_url;
@@ -92,8 +92,8 @@ router.post("/", middleware.isLoggedIn, upload.single("image"), function (
     };
     geocoder.geocode(req.body.location, function (err, data) {
       if (err || !data.length) {
-        req.flash("error", "Invalid address");
-        return res.redirect("back");
+        req.flash('error', 'Invalid address');
+        return res.redirect('back');
       }
       req.body.campground.lat = data[0].latitude;
       req.body.campground.lng = data[0].longitude;
@@ -102,46 +102,51 @@ router.post("/", middleware.isLoggedIn, upload.single("image"), function (
 
       Campground.create(req.body.campground, function (err, campground) {
         if (err) {
-          req.flash("error", err.message);
-          return res.redirect("back");
+          req.flash('name', req.body.campground.name);
+          req.flash('price', req.body.campground.price);
+          req.flash('description', req.body.campground.description);
+          req.flash('description', req.body.campground.image);
+          req.flash('location', req.body.campground.location);
+          req.flash('error', err.message);
+          return res.redirect('back');
         }
-        res.redirect("/campgrounds/" + campground.id);
+        res.redirect('/campgrounds/' + campground.id);
       });
     });
   });
 });
 // NEW - show form to create new campground
-router.get("/new", middleware.isLoggedIn, (req, res) => {
-  res.render("campgrounds/new");
+router.get('/new', middleware.isLoggedIn, (req, res) => {
+  res.render('campgrounds/new');
 });
 
 // SHOW - shows more info about one campground
-router.get("/:id", function (req, res) {
+router.get('/:id', function (req, res) {
   //find the campground with provided ID
   Campground.findById(req.params.id)
-    .populate("comments likes")
+    .populate('comments likes')
     .populate({
-      path: "reviews",
+      path: 'reviews',
       options: { sort: { createdAt: -1 } },
     })
     .exec(function (err, foundCampground) {
       if (err || !foundCampground) {
         console.log(err);
-        req.flash("error", "Sorry, that campground does not exist!");
-        return res.redirect("/campgrounds");
+        req.flash('error', 'Sorry, that campground does not exist!');
+        return res.redirect('/campgrounds');
       }
       console.log(foundCampground);
       //render show template with that campground
-      res.render("campgrounds/show", { campground: foundCampground });
+      res.render('campgrounds/show', { campground: foundCampground });
     });
 });
 
 // Campground Like Route
-router.post("/:id/like", middleware.isLoggedIn, function (req, res) {
+router.post('/:id/like', middleware.isLoggedIn, function (req, res) {
   Campground.findById(req.params.id, function (err, foundCampground) {
     if (err) {
       console.log(err);
-      return res.redirect("/campgrounds");
+      return res.redirect('/campgrounds');
     }
 
     // check if req.user._id exists in foundCampground.likes
@@ -160,9 +165,9 @@ router.post("/:id/like", middleware.isLoggedIn, function (req, res) {
     foundCampground.save(function (err) {
       if (err) {
         console.log(err);
-        return res.redirect("/campgrounds");
+        return res.redirect('/campgrounds');
       }
-      return res.redirect("/campgrounds/" + foundCampground._id);
+      return res.redirect('/campgrounds/' + foundCampground._id);
     });
   });
 });
@@ -174,27 +179,27 @@ router.post("/:id/like", middleware.isLoggedIn, function (req, res) {
 //   });
 
 // Edit ROUTE
-router.get("/:id/edit", middleware.checkCampgroundOwnership, (req, res) => {
+router.get('/:id/edit', middleware.checkCampgroundOwnership, (req, res) => {
   Campground.findById(req.params.id, (err, foundCampground) => {
     if (err || !foundCampground) {
-      req.flash("error", "Campground not found");
-      res.redirect("/campgrounds");
+      req.flash('error', 'Campground not found');
+      res.redirect('/campgrounds');
     }
-    res.render("campgrounds/edit", { campground: foundCampground });
+    res.render('campgrounds/edit', { campground: foundCampground });
   });
 });
 
 // UPDATE ROUTE
 router.put(
-  "/:id",
+  '/:id',
   middleware.checkCampgroundOwnership,
-  upload.single("image"),
+  upload.single('image'),
   (req, res) => {
     delete req.body.campground.rating;
     Campground.findById(req.params.id, async (err, campground) => {
       if (err) {
-        req.flash("error", err.message);
-        return res.redirect("back");
+        req.flash('error', err.message);
+        return res.redirect('back');
       } else {
         if (req.file) {
           try {
@@ -203,18 +208,18 @@ router.put(
             campground.imageId = result.public_id;
             campground.image = result.secure_url;
           } catch {
-            req.flash("error", err.message);
-            return res.redirect("back");
+            req.flash('error', err.message);
+            return res.redirect('back');
           }
         }
-        console.log("address : " + req.body.campground.location);
-        console.log("address : " + req.body.location);
+        console.log('address : ' + req.body.campground.location);
+        console.log('address : ' + req.body.location);
         geocoder.geocode(req.body.campground.location, function (err, data) {
           if (err || !data.length) {
-            req.flash("error", "Invalid address");
+            req.flash('error', 'Invalid address');
             console.log(data.length);
-            console.log("addre :" + err);
-            return res.redirect("back");
+            console.log('addre :' + err);
+            return res.redirect('back');
           }
           req.body.campground.lat = data[0].latitude;
           req.body.campground.lng = data[0].longitude;
@@ -232,8 +237,8 @@ router.put(
           campground.price = req.body.campground.price;
           campground.description = req.body.campground.description;
           campground.save();
-          req.flash("success", "Successfully Updated!");
-          res.redirect("/campgrounds/" + campground._id);
+          req.flash('success', 'Successfully Updated!');
+          res.redirect('/campgrounds/' + campground._id);
         });
       }
     });
@@ -250,21 +255,21 @@ router.put(
 // });
 
 // DESTROY ROUTE
-router.delete("/:id", middleware.checkCampgroundOwnership, (req, res) => {
+router.delete('/:id', middleware.checkCampgroundOwnership, (req, res) => {
   Campground.findById(req.params.id, async function (err, campground) {
     if (err) {
-      req.flash("error", err.message);
-      return res.redirect("back");
+      req.flash('error', err.message);
+      return res.redirect('back');
     }
     try {
       await cloudinary.v2.uploader.destroy(campground.imageId);
       campground.remove();
-      req.flash("success", "Campground deleted successfully!");
-      res.redirect("/campgrounds");
+      req.flash('success', 'Campground deleted successfully!');
+      res.redirect('/campgrounds');
     } catch (err) {
       if (err) {
-        req.flash("error", err.message);
-        return res.redirect("back");
+        req.flash('error', err.message);
+        return res.redirect('back');
       }
     }
   });
@@ -281,7 +286,7 @@ router.delete("/:id", middleware.checkCampgroundOwnership, (req, res) => {
 });
 
 function escapeRegex(text) {
-  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, "\\$&");
+  return text.replace(/[-[\]{}()*+?.,\\^$|#\s]/g, '\\$&');
 }
 
 // router.delete("/:id", (req, res) => {

@@ -10,7 +10,8 @@
             <div class="col">
                 <div class="md-form">
                   <i class="fas fa-pen prefix"></i>
-                    <input type="text" name= "firstName" id="firstName" class="form-control shadow-none" autocomplete="off" onfocusout="validateFirstName()" required>
+                    <input value="<%= messages.firstName %>"
+                    type="text" name= "firstName" id="firstName" class="form-control shadow-none" autocomplete="off" onfocusout="validateFirstName()" required>
                     <label for="firstName">First Name</label>
                     <i class="fas fa-check-circle"></i>
                     <i class="fas fa-exclamation-circle"></i>
@@ -20,7 +21,8 @@
              <div class="col">
               <div class="md-form">
                 <i class="fas fa-pen prefix"></i>
-                <input type="text" name="lastName" id="lastName" class="form-control shadow-none" autocomplete="off" onfocusout="validateLastName()" required>
+                <input value="<%= messages.lastName %>"
+                type="text" name="lastName" id="lastName" class="form-control shadow-none" autocomplete="off" onfocusout="validateLastName()" required>
                 <label for="lastName">Last Name</label>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
@@ -32,7 +34,8 @@
             <div class ="col">
               <div class="md-form">
                 <i class="fas fa-user prefix"></i>
-                <input type="text" name="username" id="username" class="form-control shadow-none" autocomplete="off" onfocusout="validateusername()" required>
+                <input value="<%= messages.username %>"
+                type="text" name="username" id="username" class="form-control shadow-none" autocomplete="off" onfocusout="validateusername()" required>
                 <label for="username">User Name</label>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
@@ -42,8 +45,9 @@
             <div class ="col">
               <div class="md-form">
                 <i class="fas fa-user-circle prefix"></i>
-                <input type="text" name="avatar" id="avatar" class="form-control shadow-none" autocomplete="off">
-                <label for="avatar">User Image</label>
+                <input value="<%= messages.avatar %>"
+                type="text" name="avatar" id="avatar" class="form-control shadow-none" autocomplete="off">
+                <label for="avatar">User Image(optional)</label>
                 <i class="fas fa-check-circle"></i>
                 <i class="fas fa-exclamation-circle"></i>
                 <small>Error message</small>
@@ -52,7 +56,7 @@
         </div>
         <div class="md-form">
           <i class="fas fa-at prefix"></i>
-          <input type="email" name="email" id="email" class="form-control shadow-none" autocomplete="off" onfocusout="validateEmail()" required>
+          <input value="<%= messages.email %>" type="email" name="email" id="email" class="form-control shadow-none" autocomplete="off" onfocusout="validateEmail()" required>
           <label for="email">Email</label>
           <i class="fas fa-check-circle"></i>
           <i class="fas fa-exclamation-circle"></i>
@@ -61,7 +65,7 @@
         <div class="md-form">
           <i class="fas fa-user-shield prefix"></i>
           <input type="text" name="adminCode" id="adminCode" class="form-control shadow-none" autocomplete="off">
-          <label for="adminCode">Admin Code</label>
+          <label for="adminCode">Admin Code(optional)</label>
           <i class="fas fa-check-circle"></i>
           <i class="fas fa-exclamation-circle"></i>
           <small>Error message</small>

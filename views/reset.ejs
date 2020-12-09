@@ -1,6 +1,7 @@
 <%- include ("./partials/header") %>
 
-<div class="row">
+<div class="login-pg">
+	<div class="row">
 	<div class="col-md-12">
 		<form action="/reset/<%= token %>" method="POST">
 		  <legend>Reset Password</legend>
@@ -18,5 +19,8 @@
 		</form>
 	</div>
 </div>
+</div>
+
+
 
 <%- include ("./partials/footer") %>

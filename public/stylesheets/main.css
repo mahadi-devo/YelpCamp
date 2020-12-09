@@ -127,3 +127,7 @@ button {
 .fab:hover {
   color: #b3b3b3;
 }
+
+.login-pg {
+  min-height: 80vh;
+}

@@ -1,6 +1,6 @@
 <%- include ("./partials/header") %>
-
-<div class="row">
+<div class="login-pg">
+    <div class="row mt-5">
     <div class="form-signUp">
         <div class="header text-center">
             <h2>Login</h2>
@@ -20,6 +20,7 @@
                         <input type="password" id="password" name="password" class="form-control" required>
                         <label for="password">Password</label>
                     </div>
+                    
                     <button class="btn btn-lg btn-success btn-block mb-3" type="submit">Sign in</button>   
                 </div>    
         </form>
@@ -28,9 +29,43 @@
             <a href="/forgot" class="float-right forgot">Forgot Password</a>
             </p>
         </div>
+    </div>
 
+    <div class="mt-5 mx-auto">
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-header font-weight-bold text-center">Use Demo Credentials to Sign In</div>
+                    <div class="px-2 py-2">
+                        <p class="mt-2 font-weight-bold text-center">Guest Role</p>
+                        <div class="p-2 flex items-center justify-items-center">
+                            <div><span>Username : </span>
+                            <b>Guest</b></div>
+
+                            <div><span>Password : </span>
+                            <b>Guest123</b></div>
+                            
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="px-2 py-2">
+                        <p class="font-weight-bold text-center">Admin Role</p>
+                        <div class="p-2 flex items-center justify-items-center">
+                            <div><span>Username : </span>
+                            <b>Admin</b></div>
+
+                            <div><span>Password : </span>
+                            <b>Admin123</b></div>
+                            
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
     </div>
 </div>
+
+</div>
+
 
 
 
