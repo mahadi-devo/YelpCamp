@@ -5,7 +5,7 @@
 
 ## Demo
 
-The App is live at [yelpcamp](https://yelpcamp-mahadi-devo.herokuapp.com/campgrounds)
+The App is live at [yelpcamp](https://yelpcamp-mahadi-devo.herokuapp.com/)
 
 ## Login Credentials
 
@@ -100,3 +100,5 @@ node app.js
         </ul>
     </li>
 </ul>
+
+<img src="https://res.cloudinary.com/mahadi/image/upload/v1607546923/Picturedemo_wlcbgf.png"/>
