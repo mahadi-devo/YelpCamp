@@ -1,20 +1,22 @@
 # YelpCamp
 
-<p>YelpCamp is a Node.js express based web application with RESTful routing principals</p>
+> YelpCamp is a Node.js express based web application with RESTful routing principals
+> <b>Node | Express | MongoDB | ejs</b>
 
-<h2>Live Demo : <a href= "https://yelpcamp-mahadi-devo.herokuapp.com/campgrounds">YelpCamp</a></h2>
-```
+## Demo [yelpcamp](https://yelpcamp-mahadi-devo.herokuapp.com/campgrounds)
+
+<b> Guest Role </b>
+
 <ul>
     <li>Login username: Guest</li>
     <li>Login password: Guest123</li>
 </ul>
-```
-```
+<hr>
+<b> Admin Role </b>
 <ul>
     <li>Login username: Admin</li>
     <li>Login password: Admin123</li>
 </ul>
-```
 
 <b>YelpCamp Functions</b>
 
@@ -27,6 +29,7 @@
         <ul>
             <li>User / Admin signup</li>
             <li>User / Admin login</li>
+            <li>Password reset </li>
         </ul>
     </li>
     <li>Authorization:
@@ -61,10 +64,17 @@
             <li>List All Likes</li>
             <li>Like, Remove Like Functionality</li>
         </ul>
+        </li>
+        <li>Secirity :
+        <ul>
+            <li>List All Likes</li>
+            <li>Like, Remove Like Functionality</li>
+        </ul>
+        </li>
     <li>Campground location with Google Maps</li>
     <li>Pricing feature</li>
-    <li>Password reset </li>
     <li>Display time since post was created with Moment JS </li>
+
 </ul>
 <ul>
     <li>Deployment
