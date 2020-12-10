@@ -1,6 +1,6 @@
 <%- include ("../partials/header") %>
 
-<div class="d-flex flex-row login-pg">
+<div class="d-flex flex-row login-pg flex-wrap">
 	<div class="col-md-4">
 			<h2 class="font-weight-bold"><%= user.firstName + " " + user.lastName %></h2>
 		<div class="thumbnail">
@@ -20,7 +20,7 @@
         <div class="col-12"><h3 class="px-2"><strong><%= user.username %>'s campgrounds:</strong></h3></div>
         <div class="col d-flex flex-wrap">
         <% campgrounds.forEach(function(campground){ %>
-        <div class="col-lg-6 col-md-4 col-sm-6 mb-4">
+        <div class="col-lg-6 col-md-6 col-sm-12 mb-4">
             <div id ="card" class="card">
                 <div class="view overlay">
                     <img class="card-img-top" src="<%= campground.image %>" alt="<%= campground.image %>" height="170px" width="238px">
